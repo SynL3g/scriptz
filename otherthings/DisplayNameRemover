@@ -1,0 +1,31 @@
+-- not mine : 3
+
+local j = require(game.Chat:WaitForChild("ClientChatModules").ChatSettings)
+j.PlayerDisplayNamesEnabled = false
+for _, v in next, game:GetService("Players"):GetPlayers() do
+    if v:IsA("Player") then
+        local username = v.Name
+        v.DisplayName = username
+        v.Character:FindFirstChild("Humanoid").DisplayName = username
+        v.CharacterAdded:Connect(function(character)
+            while task.wait() do
+                if character == false then
+                    break
+                end
+                character:FindFirstChild("Humanoid").DisplayName = v.Name
+            end
+        end)
+    end
+end
+
+game:GetService("Players").PlayerAdded:Connect(function(player)
+    player.DisplayName = player.Name
+    player.CharacterAdded:Connect(function(character)
+        while task.wait() do
+            if character == false then
+                break
+            end
+            character:FindFirstChild("Humanoid").DisplayName = player.Name
+        end
+    end)
+end)
