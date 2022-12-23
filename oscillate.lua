@@ -4,7 +4,7 @@ local Lovense = LovenseSession:new("")
 
 local oscillate = function()
     for i = 2, math.huge do
-        if i == 20 then i = 2 end;
+        if i == 18 then i = 2 end;
         Lovense:Vibrate(i)
     end 
 end
